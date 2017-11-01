@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-10-6 9:53:36 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.zuikc.domain.ProjectFunction" table="PROJECTFUNCTION">
+        <id name="functionID" type="java.lang.Integer">
+            <column name="FUNCTIONID" />
+            <generator class="identity" />
+        </id>
+        <property name="functionName" type="java.lang.String">
+            <column name="FUNCTIONNAME" />
+        </property>
+        <many-to-one name="projectModel" class="com.zuikc.domain.ProjectModel" fetch="join">
+            <column name="PROJECTMODEL" />
+        </many-to-one>
+        <property name="priority" type="java.lang.String">
+            <column name="PRIORITY" />
+        </property>
+        <property name="simpleDesc" type="java.lang.String">
+            <column name="SIMPLEDESC" />
+        </property>
+        <property name="detailDesc" type="java.lang.String">
+            <column name="DETAILDESC" />
+        </property>
+        <property name="startdate" type="java.util.Date">
+            <column name="STARTDATE" />
+        </property>
+        <property name="modifydate" type="java.util.Date">
+            <column name="MODIFYDATE" />
+        </property>
+        <property name="comments" type="java.lang.String">
+            <column name="COMMENTS" />
+        </property>
+    </class>
+</hibernate-mapping>

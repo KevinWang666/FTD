@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-10-6 10:05:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping  >
+    <class name="com.zuikc.domain.Resource" table="RESOURCE" >
+        <id name="resourceID" type="java.lang.Integer">
+            <column name="RESOURCEID" />
+            <generator class="identity" />
+        </id>
+        <property name="resourceNumber" type="java.lang.String">
+            <column name="RESOURCENUMBER" />
+        </property>
+        <property name="resourceName" type="java.lang.String">
+            <column name="RESOURCENAME" />
+        </property>
+        <many-to-one name="parent" class="com.zuikc.domain.Resource" fetch="join" lazy="false">
+        </many-to-one>
+        <property name="resourcePath" type="java.lang.String">
+            <column name="RESOURCEPATH" />
+        </property>
+        <property name="status" type="java.lang.String">
+            <column name="STATUS" />
+        </property>
+        <property name="comments" type="java.lang.String">
+            <column name="COMMENTS" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-10-6 10:05:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.zuikc.domain.Project" table="PROJECT">
+        <id name="projectID" type="java.lang.Integer">
+            <column name="PROJECTID" />
+            <generator class="identity" />
+        </id>
+        <property name="projectName" type="java.lang.String">
+            <column name="PROJECTNAME" />
+        </property>
+        <many-to-one name="customer" class="com.zuikc.domain.Customer" fetch="join" lazy="false">
+            <column name="CUSTOMER" />
+        </many-to-one>
+        <many-to-one name="user" class="com.zuikc.domain.UserInfo" fetch="join" lazy="false">
+            <column name="USER" />
+        </many-to-one>
+        <property name="developerNumber" type="java.lang.Integer">
+            <column name="DEVELOPERNUMBER" />
+        </property>
+        <property name="pubdate" type="java.util.Date">
+            <column name="PUBDATE" />
+        </property>
+        <property name="modifydate" type="java.util.Date">
+            <column name="MODIFYDATE" />
+        </property>
+        <property name="cost" type="java.lang.Integer">
+            <column name="COST" />
+        </property>
+        <property name="finishdate" type="java.util.Date">
+            <column name="FINISHDATE" />
+        </property>
+        <property name="level" type="java.lang.String">
+            <column name="LEVEL" />
+        </property>
+        <property name="status" type="java.lang.String">
+            <column name="STATUS" />
+        </property>
+        <property name="comments" type="java.lang.String">
+            <column name="COMMENTS" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-10-6 10:05:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.zuikc.domain.Filepath" table="FILEPATH">
+        <id name="filepathID" type="java.lang.Integer">
+            <column name="FILEPATHID" />
+            <generator class="identity" />
+        </id>
+        <property name="filepathname" type="java.lang.String">
+            <column name="FILEPATHNAME" />
+        </property>
+    </class>
+</hibernate-mapping>

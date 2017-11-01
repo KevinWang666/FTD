@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-10-6 10:05:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.zuikc.domain.Customer" table="CUSTOMER">
+        <id name="customerID" type="java.lang.Integer">
+            <column name="CUSTOMERID" />
+            <generator class="identity" />
+        </id>
+        <property name="customerName" type="java.lang.String">
+            <column name="CUSTOMERNAME" />
+        </property>
+        <property name="contact" type="java.lang.String">
+            <column name="CONTACT" />
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="ADDRESS" />
+        </property>
+        <property name="cellphone" type="java.lang.String">
+            <column name="CELLPHONE" />
+        </property>
+        <property name="landline" type="java.lang.String">
+            <column name="LANDLINE" />
+        </property>
+        <property name="intro" type="java.lang.String">
+            <column name="INTRO" />
+        </property>
+        <property name="comments" type="java.lang.String">
+            <column name="COMMENTS" />
+        </property>
+        <property name="pubdate" type="java.util.Date">
+            <column name="PUBDATE" />
+        </property>
+        <property name="modifydate" type="java.util.Date">
+            <column name="MODIFYDATE" />
+        </property>
+    </class>
+</hibernate-mapping>

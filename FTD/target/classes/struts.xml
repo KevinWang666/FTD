@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+	<!-- 客户操作 -->
+	<package name="customerPackage" extends="struts-default">
+		<default-class-ref class="customerAction" />
+		<!-- 跳转用action -->
+		<action name="jumpAction" class="jumpAction">
+			<result>
+				/${dest}
+			</result>
+		</action>
+		<!-- 查询客户列表 -->
+		<action name="customerListAction">
+			<result>
+				/customer.jsp
+			</result>
+		</action>
+
+		<!-- 添加客户 -->
+		<action name="customerAddAction" method="addCustomer">
+			<result type="redirectAction">
+				<param name="actionName">
+					customerListAction
+				</param>
+			</result>
+		</action>
+		<!-- 跳转到编辑客户页面 -->
+		<action name="jump2customerEditAction" method="lookCustomer">
+			<result>
+				/customer-edit.jsp
+			</result>
+		</action>
+		<!-- 编辑客户 -->
+		<action name="customerEditAction" method="editCustomer">
+			<result type="redirectAction">
+				<param name="actionName">
+					customerListAction
+				</param>
+			</result>
+		</action>
+		<!-- 查看客户详情 -->
+		<action name="customerLookAction" method="lookCustomer">
+			<result>
+				/customer-look.jsp
+			</result>
+		</action>
+		<!-- 删除客户 -->
+		<action name="customerDeleteAction" method="deleteCustomer">
+			<result type="redirectAction">
+				<param name="actionName">
+					customerListAction
+				</param>
+			</result>
+		</action>
+
+	</package>
+
+	<!-- 角色操作 -->
+	<package name="rolePackage" extends="struts-default">
+		<default-class-ref class="roleAction" />
+		<action name="roleListAction">
+			<result>
+				/role.jsp
+			</result>
+		</action>
+		<!-- 跳转到添加角色页面 -->
+		<action name="jump2AddRoleAction" method="queryResourceList">
+			<result>
+				/role-add.jsp
+			</result>
+		</action>
+		<!-- 添加角色 -->
+		<action name="addRoleAction" method="addRole">
+			<result type="redirectAction">
+				<param name="actionName">
+					roleListAction
+				</param>
+			</result>
+		</action>
+		<!-- 跳转到编辑页面 -->
+		<action name="jump2UpdateRoleAction" method="queryRoleByID">
+			<result>
+				/role-edit.jsp
+			</result>
+		</action>
+		<!-- 提交编辑 -->
+		<action name="updateRoleAction" method="updateRole">
+			<result type="redirectAction">
+				<param name="actionName">
+					roleListAction
+				</param>
+			</result>
+		</action>
+		<!-- 删除角色 -->
+		<action name="deleteRoleAction" method="deleteRole">
+			<result type="redirectAction">
+				<param name="actionName">
+					roleListAction
+				</param>
+			</result>
+		</action>
+		<!-- 查看详情 -->
+		<action name="lookRoleAcion" method="queryRoleByID">
+			<result>
+				/role-look.jsp
+			</result>
+		</action>
+		<!-- 禁用状态 -->
+		<action name="switchStatusRoleAction" method="switchStatusRole">
+			<result type="redirectAction">
+				<param name="actionName">
+					roleListAction
+				</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- 菜单资源操作 -->
+	<package name="ResourcePackage" extends="struts-default">
+		<default-class-ref class="resourceAction" />
+		<action name="resourceListAction">
+			<result>
+				/resources.jsp
+			</result>
+		</action>
+		<!-- 跳转到添加菜单资源页面 -->
+		<action name="jump2AddResourceAction" method="queryParentResources">
+			<result>
+				/resources-add.jsp
+			</result>
+		</action>
+		<action name="resourceAddAction" method="addResource">
+			<result type="redirectAction">
+				<param name="actionName">
+					resourceListAction
+				</param>
+			</result>
+		</action>
+		<action name="jump2UpdateAction" method="queryResourceByID">
+			<result>
+				/resources-edit.jsp
+			</result>
+		</action>
+		<action name="resourceUpdateAction" method="updateResource">
+			<result type="redirectAction">
+				<param name="actionName">
+					resourceListAction
+				</param>
+			</result>
+		</action>
+		<action name="resourceDeleteAction" method="deleteResource">
+			<result type="redirectAction">
+				<param name="actionName">
+					resourceListAction
+				</param>
+			</result>
+		</action>
+		<action name="switchStatusAction" method="switchStatus">
+			<result type="redirectAction">
+				<param name="actionName">
+					resourceListAction
+				</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- 人员操作：前瞻性地加入了JSON -->
+	<package name="UserInfoPackage" extends="json-default">
+		<default-class-ref class="userInfoAction" />
+		<action name="userInfoListAction">
+			<result>
+				/user.jsp
+			</result>
+		</action>
+		<!-- 带查询的跳转 -->
+		<action name="jump2AddUserInfoAction" method="queryUserInfoByID">
+			<result>
+				/user-add.jsp
+			</result>
+		</action>
+		<action name="jump2UpdateUserInfoAction" method="queryUserInfoByID">
+			<result>
+				/user-edit.jsp
+			</result>
+		</action>
+		<action name="lookUserInfoAction" method="queryUserInfoByID">
+			<result>
+				/user-look.jsp
+			</result>
+		</action>
+		<action name="addUserInfoAction" method="addUserInfo">
+			<result type="redirectAction">
+				<param name="actionName">
+					userInfoListAction
+				</param>
+			</result>
+		</action>
+		<action name="updateUserInfoAction" method="updateUserInfo">
+			<result type="redirectAction">
+				<param name="actionName">
+					userInfoListAction
+				</param>
+			</result>
+		</action>
+		<action name="deleteUserInfoAction" method="deleteUserInfo">
+			<result type="redirectAction">
+				<param name="actionName">
+					userInfoListAction
+				</param>
+			</result>
+		</action>
+		<!-- 注销 -->
+		<action name="switchStatusUserInfoAction" method="switchStatusUserInfo">
+			<result type="redirectAction">
+				<param name="actionName">
+					userInfoListAction
+				</param>
+			</result>
+		</action>
+		<!-- 导出Excel：还未写 -->
+		<!-- 用户登录 -->
+		<action name="loginAction" method="login">
+			<result>
+				/index.jsp
+			</result>
+			<result name="login">
+				/login.jsp
+			</result>
+		</action>
+		<!-- 注销登录 -->
+		<action name="logoutAction" method="logout">
+			<result>
+				/login.jsp
+			</result>
+		</action>
+		<!-- 修改密码 -->
+		<action name="modpasswordAction" method="modpassword">
+			<result>
+				/info.jsp
+			</result>
+			<result name="input">
+				/modpassword.jsp
+			</result>
+		</action>
+	</package>
+	<!-- 基本信息管理:需要异步 -->
+	<package name="projectBasePackage" extends="json-default">
+		<default-class-ref class="projectAction" />
+		<action name="projectListAction">
+			<result>
+				/project-base.jsp
+			</result>
+		</action>
+		<!-- 带查询的跳转 -->
+		<action name="jump2AddProjectAction" method="queryProjectByID">
+			<result>
+				/project-base-add.jsp
+			</result>
+		</action>
+		<action name="jump2UpdateProjectAction" method="queryProjectByID">
+			<result>
+				/project-base-edit.jsp
+			</result>
+		</action>
+		<action name="lookProjectAction" method="queryProjectByID">
+			<result>
+				/project-base-look.jsp
+			</result>
+		</action>
+		<action name="addProjectAction" method="addProject">
+			<result type="redirectAction">
+				<param name="actionName">
+					projectListAction
+				</param>
+			</result>
+		</action>
+		<action name="updateProjectAction" method="updateProject">
+			<result type="redirectAction">
+				<param name="actionName">
+					projectListAction
+				</param>
+			</result>
+		</action>
+		<action name="deleteProjectAction" method="deleteProject">
+			<result type="redirectAction">
+				<param name="actionName">
+					projectListAction
+				</param>
+			</result>
+		</action>
+		<!-- 异步获取客户联系人 -->
+		<action name="ajaxGetContactAction" method="ajaxGetContactByID">
+			<result type="json">
+				<param name="root">
+					contactName
+				</param>
+			</result>			
+		</action>
+		
+	</package>
+	<!-- 需求分析管理 -->
+	<package name="ProjectNeedPackage" extends="json-default">
+		<default-class-ref class="projectNeedAction" />
+		<action name="projectNeedListAction">
+			<result>
+				/project-need.jsp
+			</result>
+		</action>
+		<!-- 带查询的跳转 -->
+		<action name="jump2AddProjectNeedAction" method="queryProjectNeedByID">
+			<result>
+				/project-need-add.jsp
+			</result>
+		</action>
+		<action name="jump2UpdateProjectNeedAction" method="queryProjectNeedByID">
+			<result>
+				/project-need-edit.jsp
+			</result>
+		</action>
+		<action name="lookProjectNeedAction" method="queryProjectNeedByID">
+			<result>
+				/project-need-look.jsp
+			</result>
+		</action>
+		<action name="addProjectNeedAction" method="addProjectNeed">
+			<result type="redirectAction">
+				<param name="actionName">
+					projectNeedListAction
+				</param>
+			</result>
+		</action>
+		<action name="updateProjectNeedAction" method="updateProjectNeed">
+			<result type="redirectAction">
+				<param name="actionName">
+					projectNeedListAction
+				</param>
+			</result>
+		</action>
+		<action name="deleteProjectNeedAction" method="deleteProjectNeed">
+			<result type="redirectAction">
+				<param name="actionName">
+					projectNeedListAction
+				</param>
+			</result>
+		</action>
+	</package>
+	<!-- 模块管理 -->
+	<package name="ProjectModelPackage" extends="json-default">
+		<default-class-ref class="projectModelAction" />
+		<action name="projectModelListAction">
+			<result>
+				/project-model.jsp
+			</result>
+		</action>
+		<!-- 带查询的跳转 -->
+		<action name="jump2AddProjectModelAction" method="queryProjectModelByID">
+			<result>
+				/project-model-add.jsp
+			</result>
+		</action>
+		<action name="jump2UpdateProjectModelAction" method="queryProjectModelByID">
+			<result>
+				/project-model-edit.jsp
+			</result>
+		</action>
+		<action name="lookProjectModelAction" method="queryProjectModelByID">
+			<result>
+				/project-model-look.jsp
+			</result>
+		</action>
+		<action name="addProjectModelAction" method="addProjectModel">
+			<result type="redirectAction">
+				<param name="actionName">
+					projectModelListAction
+				</param>
+			</result>
+		</action>
+		<action name="updateProjectModelAction" method="updateProjectModel">
+			<result type="redirectAction">
+				<param name="actionName">
+					projectModelListAction
+				</param>
+			</result>
+		</action>
+		<action name="deleteProjectModelAction" method="deleteProjectModel">
+			<result type="redirectAction">
+				<param name="actionName">
+					projectModelListAction
+				</param>
+			</result>
+		</action>
+		<!-- 异步获取对应项目下的需求分析列表 -->
+		<action name="ajaxGetProjectNeedListAction" method="getProjectNeedByProID">
+			<result type="json">
+				<param name="root">
+					ajaxProjectNeedList
+				</param>
+			</result>			
+		</action>
+	</package>
+	<!-- 功能管理 -->
+	<package name="ProjectFunctionPackage" extends="json-default">
+		<default-class-ref class="projectFunctionAction" />
+		<action name="projectFunctionListAction">
+			<result>
+				/project-function.jsp
+			</result>
+		</action>
+		<!-- 带查询的跳转 -->
+		<action name="jump2AddProjectFunctionAction" method="queryProjectFunctionByID">
+			<result>
+				/project-function-add.jsp
+			</result>
+		</action>
+		<action name="jump2UpdateProjectFunctionAction" method="queryProjectFunctionByID">
+			<result>
+				/project-function-edit.jsp
+			</result>
+		</action>
+		<action name="lookProjectFunctionAction" method="queryProjectFunctionByID">
+			<result>
+				/project-function-look.jsp
+			</result>
+		</action>
+		<action name="addProjectFunctionAction" method="addProjectFunction">
+			<result type="redirectAction">
+				<param name="actionName">
+					projectFunctionListAction
+				</param>
+			</result>
+		</action>
+		<action name="updateProjectFunctionAction" method="updateProjectFunction">
+			<result type="redirectAction">
+				<param name="actionName">
+					projectFunctionListAction
+				</param>
+			</result>
+		</action>
+		<action name="deleteProjectFunctionAction" method="deleteProjectFunction">
+			<result type="redirectAction">
+				<param name="actionName">
+					projectFunctionListAction
+				</param>
+			</result>
+		</action>
+		<!-- 异步获取对应需求下的模块列表 -->
+		<action name="ajaxGetProjectModelListAction" method="getProjectModelByNeedID">
+			<result type="json">
+				<param name="root">
+					ajaxProjectModelList
+				</param>
+			</result>			
+		</action>
+	</package>
+	<!-- 项目附件管理 -->
+	<package name="ProjectFilePackage" extends="json-default">
+		<default-class-ref class="projectFileAction" />
+		<action name="projectFileListAction">
+			<result>
+				/project-file.jsp
+			</result>
+		</action>
+		<!-- 带查询的跳转 -->
+		<action name="jump2AddProjectFileAction" method="queryProjectFileByID">
+			<result>
+				/project-file-add.jsp
+			</result>
+		</action>
+		<action name="jump2UpdateProjectFileAction" method="queryProjectFileByID">
+			<result>
+				/project-file-edit.jsp
+			</result>
+		</action>
+		<action name="lookProjectFileAction" method="queryProjectFileByID">
+			<result>
+				/project-file-look.jsp
+			</result>
+		</action>
+		<action name="addProjectFileAction" method="addProjectFile">
+			<result type="redirectAction">
+				<param name="actionName">
+					projectFileListAction
+				</param>
+			</result>
+		</action>
+		<action name="updateProjectFileAction" method="updateProjectFile">
+			<result type="redirectAction">
+				<param name="actionName">
+					projectFileListAction
+				</param>
+			</result>
+		</action>
+		<action name="deleteProjectFileAction" method="deleteProjectFile">
+			<result type="redirectAction">
+				<param name="actionName">
+					projectFileListAction
+				</param>
+			</result>
+		</action>
+		<!-- 还有文件的上传和下载没有写 -->
+		
+	</package>
+	
+	<!-- 任务管理 -->
+	<package name="TaskPackage" extends="json-default">
+		<default-class-ref class="taskAction" />
+		<action name="taskListAction">
+			<result>
+				/task.jsp
+			</result>
+		</action>
+		<!-- 带查询的跳转 -->
+		<action name="jump2AddTaskAction" method="queryTaskByID">
+			<result>
+				/task-add.jsp
+			</result>
+		</action>
+		<action name="jump2UpdateTaskAction" method="queryTaskByID">
+			<result>
+				/task-edit.jsp
+			</result>
+		</action>
+		<action name="lookTaskAction" method="queryTaskByID">
+			<result>
+				/task-look.jsp
+			</result>
+		</action>
+		<!-- 我的任务 -->
+		<action name="lookMyTaskAction" method="lookMyTask">
+			<result>
+				/task-my.jsp
+			</result>
+		</action>
+		<action name="addTaskAction" method="addTask">
+			<result type="redirectAction">
+				<param name="actionName">
+					taskListAction
+				</param>
+			</result>
+		</action>
+		<action name="updateTaskAction" method="updateTask">
+			<result type="redirectAction">
+				<param name="actionName">
+					taskListAction
+				</param>
+			</result>
+		</action>
+		<action name="deleteTaskAction" method="deleteTask">
+			<result type="redirectAction">
+				<param name="actionName">
+					taskListAction
+				</param>
+			</result>
+		</action>
+		<action name="startTaskAction" method="startTask">
+			<result type="redirectAction">
+				<param name="actionName">
+					lookMyTaskAction
+				</param>
+			</result>
+		</action>
+		<action name="finishTaskAction" method="finishTask">
+			<result type="redirectAction">
+				<param name="actionName">
+					lookMyTaskAction
+				</param>
+			</result>
+		</action>
+		<!-- 异步获取对应模块的功能列表 -->
+		<action name="ajaxGetProjectFunctionListAction" method="getFunctionByModelID">
+			<result type="json">
+				<param name="root">
+					ajaxFunctionList
+				</param>
+			</result>			
+		</action>
+	</package>
+	
+</struts>
+    

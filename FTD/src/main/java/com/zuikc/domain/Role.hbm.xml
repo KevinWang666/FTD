@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-10-6 10:05:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+ <class name="com.zuikc.domain.Role" table="ROLE">
+  <id name="roleID" type="java.lang.Integer">
+   <column name="ROLEID"/>
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="roleNumber" type="java.lang.String">
+   <column name="ROLENUMBER"/>
+  </property>
+  <property generated="never" lazy="false" name="roleName" type="java.lang.String">
+   <column name="ROLENAME"/>
+  </property>
+  <property generated="never" lazy="false" name="status" type="java.lang.String">
+   <column name="STATUS"/>
+  </property>
+  <!--  <list name="resources" inverse="true" table="RESOURCE" lazy="false">
+            <key>
+                <column name="ROLEID" />
+            </key>
+            <list-index></list-index>
+            <many-to-many class="com.zuikc.domain.Resource" fetch="join" column="RESOURCEID" />
+        </list> -->
+  <property generated="never" lazy="false" name="comments" type="java.lang.String">
+   <column name="COMMENTS"/>
+  </property>
+  <list name="resources" table="role_resource" cascade="save-update" fetch="join" lazy="false">
+   <key column="roleID"/>
+   <index/>
+   <many-to-many class="com.zuikc.domain.Resource"  column="RESOURCEID" />
+  </list>
+ </class>
+</hibernate-mapping>

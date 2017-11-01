@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-10-8 20:03:15 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.zuikc.domain.ProjectFile" table="PROJECTFILE">
+        <id name="fileID" type="java.lang.Integer">
+            <column name="FILEID" />
+            <generator class="identity" />
+        </id>
+        <property name="filename" type="java.lang.String">
+            <column name="FILENAME" />
+        </property>
+        <many-to-one name="project" class="com.zuikc.domain.Project" fetch="join">
+            <column name="PROJECT" />
+        </many-to-one>
+        <property name="fileDesc" type="java.lang.String">
+            <column name="FILEDESC" />
+        </property>
+        <property name="filepath" type="java.lang.String">
+            <column name="FILEPATH" />
+        </property>
+        <many-to-one name="user" class="com.zuikc.domain.UserInfo" fetch="join">
+            <column name="USER" />
+        </many-to-one>
+        <property name="uploaddate" type="java.util.Date">
+            <column name="UPLOADDATE" />
+        </property>
+        <property name="modifydate" type="java.util.Date">
+            <column name="modifydate" />
+        </property>
+        <property name="comments" type="java.lang.String">
+            <column name="COMMENTS" />
+        </property>
+    </class>
+</hibernate-mapping>
